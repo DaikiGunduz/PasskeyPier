@@ -1,3 +1,5 @@
 # Go build artifacts
 /passkeypier
 /passkeypier.exe
+*.test
+*.out
