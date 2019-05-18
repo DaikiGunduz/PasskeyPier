@@ -7,3 +7,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [0.1.0] - 2026-01-01
 
 ### Added
+
+- Go standard-library core (`internal/harbor`) modeling passkey ceremonies:
+  - Cryptographically secure challenge generation (`crypto/rand`), 16-byte
