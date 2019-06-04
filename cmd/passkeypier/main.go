@@ -2,3 +2,5 @@
 // lab. It runs virtual registration and authentication ceremonies and emits
 // conformance reports in text or JSON form.
 //
+// passkeypier is an educational conformance-exploration tool. It is not a
+// FIDO-certified product and performs no attestation trust verification.
