@@ -22,3 +22,15 @@ and no network.
 - Authenticator data layout, flag bits, and the big-endian signature counter.
 - Ed25519 (COSE algorithm `-8`, OKP curve Ed25519) signing and verification.
 - Relying-party verification steps: type, challenge, origin, RP ID hash,
+  user-verification policy, user presence, signature, and counter monotonicity.
+- User-verification policy semantics (`required` / `preferred` / `discouraged`).
+- A scenario engine with positive/negative expectations and JSON/text reports.
+
+### Explicit non-goals
+
+passkeypier is **not** a FIDO-certified implementation and makes no
+certification claims. The following are intentionally out of scope:
+
+- **Attestation statement verification.** No `packed`, `tpm`, `android-key`,
+  `android-safetynet`, `fido-u2f`, or `apple` attestation formats are parsed or
+  trusted. The lab treats registration attestation as `none`-equivalent.
