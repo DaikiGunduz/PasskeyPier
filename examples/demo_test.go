@@ -4,3 +4,9 @@
 package examples
 
 import (
+	"fmt"
+
+	"github.com/passkeypier/passkeypier/internal/harbor"
+)
+
+// ExampleRegisterAndAuthenticate walks through an honest passkey ceremony:
