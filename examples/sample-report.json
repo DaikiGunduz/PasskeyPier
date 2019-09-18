@@ -10,3 +10,16 @@
   },
   "categories": [
     {
+      "category": "authentication",
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "category": "policy",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "category": "registration",
+      "passed": 2,
+      "failed": 0
