@@ -18,3 +18,24 @@ type RegistrationResult struct {
 }
 
 // AuthenticationResult is the response to a get ceremony, mirroring the fields
+// of an AuthenticatorAssertionResponse.
+type AuthenticationResult struct {
+	CredentialID      []byte
+	ClientDataJSON    []byte
+	AuthenticatorData []byte
+	Signature         []byte
+	UserVerified      bool
+	UserHandle        []byte
+}
+
+// clientOrigin is the origin the virtual client reports. In a browser this is
+// enforced by the user agent; here the client faithfully reports the RP origin
+// unless a scenario deliberately overrides it.
+type clientOrigin struct {
+	origin      string
+	crossOrigin bool
+}
+
+// Register performs a full create ceremony against the RP:
+//
+//	1. the RP issues options with a fresh challenge;
