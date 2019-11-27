@@ -59,3 +59,24 @@ func Register(rp *RelyingParty, va *VirtualAuthenticator, opts RegistrationOptio
 	if err != nil {
 		return nil, err
 	}
+
+	cd := ClientData{
+		Type:        TypeCreate,
+		Challenge:   opts.Challenge.String(),
+		Origin:      origin.origin,
+		CrossOrigin: origin.crossOrigin,
+	}
+	cdJSON, err := cd.Marshal()
+	if err != nil {
+		return nil, err
+	}
+
+	ad := cred.buildAuthData(uv, true, va.AAGUID)
+	adBytes := ad.Marshal()
+
+	// RP-side verification of the create ceremony (WebAuthn L2 sec. 7.1).
+	if err := verifyClientData(cdJSON, TypeCreate, opts.Challenge, rp.Origin); err != nil {
+		return nil, err
+	}
+	if err := verifyRPIDHash(ad, rp.ID); err != nil {
+		return nil, err
