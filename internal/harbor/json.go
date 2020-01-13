@@ -1,2 +1,4 @@
 package harbor
 
+import (
+	"bytes"
