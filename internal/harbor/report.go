@@ -17,3 +17,13 @@ const ReportSchemaVersion = "passkeypier/report/v1"
 type Report struct {
 	Schema      string           `json:"schema"`
 	Tool        string           `json:"tool"`
+	GeneratedAt string           `json:"generated_at"`
+	Summary     ReportSummary    `json:"summary"`
+	Categories  []CategoryTotals `json:"categories"`
+	Results     []ScenarioResult `json:"results"`
+}
+
+// ReportSummary aggregates high-level pass/fail counts.
+type ReportSummary struct {
+	Total     int  `json:"total"`
+	Passed    int  `json:"passed"`
