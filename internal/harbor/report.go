@@ -27,3 +27,13 @@ type Report struct {
 type ReportSummary struct {
 	Total     int  `json:"total"`
 	Passed    int  `json:"passed"`
+	Failed    int  `json:"failed"`
+	AllPassed bool `json:"all_passed"`
+}
+
+// CategoryTotals aggregates results per scenario category.
+type CategoryTotals struct {
+	Category string `json:"category"`
+	Passed   int    `json:"passed"`
+	Failed   int    `json:"failed"`
+}
