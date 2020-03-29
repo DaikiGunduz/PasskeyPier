@@ -10,3 +10,7 @@
 **passkeypier** is a mixed-language Passkey and WebAuthn conformance lab. The Go
 core and CLI run virtual registration and authentication ceremonies: secure
 random challenges, `base64url`, origin and relying-party checks, signature
+counters, user-verification policies, and Ed25519 signing and verification. A
+small scenario engine drives those ceremonies and emits machine-readable
+conformance reports. A dependency-light TypeScript browser lab reads those
+reports and renders them, entirely offline.
