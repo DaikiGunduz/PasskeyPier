@@ -5,3 +5,11 @@
   "summary": {
     "total": 9,
     "passed": 9,
+    "failed": 0,
+    "all_passed": true
+  },
+  "categories": [
+    {
+      "category": "authentication",
+      "passed": 3,
+      "failed": 0
