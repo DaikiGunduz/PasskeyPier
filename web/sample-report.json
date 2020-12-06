@@ -21,3 +21,10 @@
     },
     {
       "category": "registration",
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "category": "security",
+      "passed": 3,
+      "failed": 0
