@@ -4,3 +4,9 @@
 
 import { Report, ScenarioResult, EXPECTED_SCHEMA } from "./types.js";
 
+export class ReportError extends Error {}
+
+function isObject(v: unknown): v is Record<string, unknown> {
+  return typeof v === "object" && v !== null && !Array.isArray(v);
+}
+
