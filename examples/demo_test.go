@@ -16,3 +16,9 @@ func Example_registerAndAuthenticate() {
 	const (
 		rpID   = "harbor.example"
 		origin = "https://harbor.example"
+	)
+
+	rp := harbor.NewRelyingParty(rpID, origin)
+	va := harbor.NewVirtualAuthenticator(true) // UV-capable (biometric/PIN)
+
+	// --- Registration ceremony (webauthn.create) ---
