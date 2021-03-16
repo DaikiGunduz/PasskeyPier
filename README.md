@@ -14,3 +14,7 @@ counters, user-verification policies, and Ed25519 signing and verification. A
 small scenario engine drives those ceremonies and emits machine-readable
 conformance reports. A dependency-light TypeScript browser lab reads those
 reports and renders them, entirely offline.
+
+The purpose is to make the logic of a passkey ceremony executable and testable.
+It is not FIDO-certified and makes no certification claims. It deliberately
+leaves out attestation-statement trust, CBOR and COSE_Key parsing, and
