@@ -28,3 +28,11 @@
       "category": "security",
       "passed": 3,
       "failed": 0
+    }
+  ],
+  "results": [
+    {
+      "name": "authenticate/cloned-counter-regression",
+      "category": "security",
+      "description": "A signature counter that fails to advance signals a cloned authenticator and must be rejected.",
+      "expectation": "reject",
