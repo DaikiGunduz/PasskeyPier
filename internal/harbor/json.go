@@ -5,3 +5,5 @@ import (
 	"encoding/json"
 )
 
+// decodeStrict decodes JSON, rejecting unknown fields to catch malformed or
+// tampered client data during verification.
