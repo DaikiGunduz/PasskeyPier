@@ -44,3 +44,50 @@ func TestNewChallengeLength(t *testing.T) {
 	}
 	if _, err := NewChallenge(8); err == nil {
 		t.Fatal("expected error for short challenge, got nil")
+	}
+}
+
+func TestChallengeUniqueness(t *testing.T) {
+	seen := map[string]bool{}
+	for i := 0; i < 256; i++ {
+		ch := mustChallenge(t)
+		s := ch.String()
+		if seen[s] {
+			t.Fatalf("duplicate challenge at iteration %d", i)
+		}
+		seen[s] = true
+	}
+}
+
+func TestBase64URLRoundTrip(t *testing.T) {
+	raw := []byte{0x00, 0xff, 0x10, 0x7f, 0x80, 0xab}
+	enc := EncodeBase64URL(raw)
+	if strings.ContainsAny(enc, "+/=") {
+		t.Fatalf("encoding %q contains non-url-safe or padding characters", enc)
+	}
+	back, err := DecodeBase64URL(enc)
+	if err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+	if !bytes.Equal(raw, back) {
+		t.Fatalf("round trip mismatch: got %x want %x", back, raw)
+	}
+}
+
+func TestAuthenticatorDataMarshalParse(t *testing.T) {
+	ad := AuthenticatorData{
+		RPIDHash:  RPIDHash(testRPID),
+		Flags:     FlagUserPresent | FlagUserVerified,
+		SignCount: 7,
+		Trailing:  []byte{1, 2, 3},
+	}
+	raw := ad.Marshal()
+	if len(raw) != 37+3 {
+		t.Fatalf("marshaled length = %d, want %d", len(raw), 40)
+	}
+	parsed, err := ParseAuthenticatorData(raw)
+	if err != nil {
+		t.Fatalf("parse: %v", err)
+	}
+	if parsed.SignCount != 7 {
+		t.Fatalf("signCount = %d, want 7", parsed.SignCount)
