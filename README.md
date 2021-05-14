@@ -18,3 +18,8 @@ reports and renders them, entirely offline.
 The purpose is to make the logic of a passkey ceremony executable and testable.
 It is not FIDO-certified and makes no certification claims. It deliberately
 leaves out attestation-statement trust, CBOR and COSE_Key parsing, and
+transport bindings. The exact scope and the honest list of non-goals live in
+[`docs/SPEC.md`](docs/SPEC.md).
+
+---
+
