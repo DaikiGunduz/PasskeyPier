@@ -36,3 +36,16 @@
       "category": "security",
       "description": "A signature counter that fails to advance signals a cloned authenticator and must be rejected.",
       "expectation": "reject",
+      "outcome": "pass",
+      "detail": "rejected as expected: harbor: signature counter did not increase (stored=99, got=1): possible cloned authenticator",
+      "duration_ns": 0
+    },
+    {
+      "name": "authenticate/happy-path",
+      "category": "authentication",
+      "description": "Register then authenticate honestly; signature, origin and counter all valid.",
+      "expectation": "accept",
+      "outcome": "pass",
+      "detail": "ceremony accepted as expected",
+      "duration_ns": 514600
+    },
