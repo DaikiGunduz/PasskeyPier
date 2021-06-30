@@ -37,3 +37,13 @@ type CategoryTotals struct {
 	Passed   int    `json:"passed"`
 	Failed   int    `json:"failed"`
 }
+
+// BuildReport turns raw scenario results into a structured report.
+func BuildReport(results []ScenarioResult) Report {
+	summary := ReportSummary{Total: len(results)}
+	catMap := map[string]*CategoryTotals{}
+	for _, r := range results {
+		if r.Outcome == OutcomePass {
+			summary.Passed++
+		} else {
+			summary.Failed++
