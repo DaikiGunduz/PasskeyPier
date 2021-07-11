@@ -19,3 +19,24 @@ const (
 // accepted is a conformance failure.
 type Expectation string
 
+const (
+	ExpectAccept Expectation = "accept"
+	ExpectReject Expectation = "reject"
+)
+
+// ScenarioResult records the outcome of one scenario.
+type ScenarioResult struct {
+	Name        string      `json:"name"`
+	Category    string      `json:"category"`
+	Description string      `json:"description"`
+	Expectation Expectation `json:"expectation"`
+	Outcome     Outcome     `json:"outcome"`
+	// Detail carries the error message on rejection, or a success note.
+	Detail string `json:"detail"`
+	// DurationNS is the wall-clock duration of the scenario in nanoseconds.
+	DurationNS int64 `json:"duration_ns"`
+}
+
+// Scenario is a named, self-contained conformance check.
+type Scenario struct {
+	Name        string
