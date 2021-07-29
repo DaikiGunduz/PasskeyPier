@@ -4,3 +4,4 @@
 //
 // passkeypier is an educational conformance-exploration tool. It is not a
 // FIDO-certified product and performs no attestation trust verification.
+package main
