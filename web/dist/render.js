@@ -11,3 +11,10 @@ function el(tag, className, text) {
 function formatDuration(ns) {
     if (ns < 1000)
         return `${ns} ns`;
+    if (ns < 1000000)
+        return `${(ns / 1000).toFixed(1)} µs`;
+    return `${(ns / 1000000).toFixed(2)} ms`;
+}
+function renderSummary(report) {
+    const wrap = el("div", "summary");
+    const banner = el("div", report.summary.all_passed ? "banner banner-pass" : "banner banner-fail", report.summary.all_passed
