@@ -11,3 +11,6 @@ export interface ScenarioResult {
   description: string;
   expectation: Expectation;
   outcome: Outcome;
+  detail: string;
+  duration_ns: number;
+}
