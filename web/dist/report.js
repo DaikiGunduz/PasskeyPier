@@ -11,3 +11,16 @@ function requireString(o, key) {
     const v = o[key];
     if (typeof v !== "string") {
         throw new ReportError(`field "${key}" must be a string`);
+    }
+    return v;
+}
+function requireNumber(o, key) {
+    const v = o[key];
+    if (typeof v !== "number" || Number.isNaN(v)) {
+        throw new ReportError(`field "${key}" must be a number`);
+    }
+    return v;
+}
+function requireBool(o, key) {
+    const v = o[key];
+    if (typeof v !== "boolean") {
