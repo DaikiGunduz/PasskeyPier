@@ -4,3 +4,4 @@
   "private": true,
   "description": "Dependency-light browser lab that renders passkeypier conformance reports.",
   "type": "module",
+  "scripts": {
