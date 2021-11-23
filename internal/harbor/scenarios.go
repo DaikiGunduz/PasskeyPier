@@ -61,3 +61,24 @@ func (s Scenario) evaluate(err error) (Outcome, string) {
 		if err != nil {
 			return OutcomePass, fmt.Sprintf("rejected as expected: %v", err)
 		}
+		return OutcomeFail, "expected rejection but ceremony was accepted"
+	default:
+		return OutcomeFail, fmt.Sprintf("unknown expectation %q", s.Expectation)
+	}
+}
+
+// DefaultScenarios returns the built-in conformance scenario suite. Each
+// scenario builds its own fresh RP and authenticator so runs are independent.
+func DefaultScenarios() []Scenario {
+	const (
+		rpID     = "harbor.example"
+		origin   = "https://harbor.example"
+		badOrig  = "https://evil.example"
+		otherRP  = "phish.example"
+	)
+
+	newPair := func(uv bool) (*RelyingParty, *VirtualAuthenticator) {
+		return NewRelyingParty(rpID, origin), NewVirtualAuthenticator(uv)
+	}
+
+	// registerHelper performs an honest registration and returns state.
