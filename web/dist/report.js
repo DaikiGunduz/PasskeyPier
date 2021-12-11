@@ -24,3 +24,17 @@ function requireNumber(o, key) {
 function requireBool(o, key) {
     const v = o[key];
     if (typeof v !== "boolean") {
+        throw new ReportError(`field "${key}" must be a boolean`);
+    }
+    return v;
+}
+function parseScenario(v) {
+    if (!isObject(v)) {
+        throw new ReportError("scenario result must be an object");
+    }
+    const outcome = requireString(v, "outcome");
+    if (outcome !== "pass" && outcome !== "fail") {
+        throw new ReportError(`invalid outcome "${outcome}"`);
+    }
+    const expectation = requireString(v, "expectation");
+    if (expectation !== "accept" && expectation !== "reject") {
