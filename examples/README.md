@@ -4,3 +4,5 @@ This directory holds runnable examples for the passkeypier conformance lab.
 
 ## `sample-report.json`
 
+A conformance report produced by the Go CLI. Regenerate it with:
+
