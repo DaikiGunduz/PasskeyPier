@@ -20,3 +20,14 @@ function formatDuration(ns: number): string {
   return `${(ns / 1_000_000).toFixed(2)} ms`;
 }
 
+function renderSummary(report: Report): HTMLElement {
+  const wrap = el("div", "summary");
+  const banner = el(
+    "div",
+    report.summary.all_passed ? "banner banner-pass" : "banner banner-fail",
+    report.summary.all_passed
+      ? "ALL SCENARIOS PASSED"
+      : "CONFORMANCE FAILURES PRESENT",
+  );
+  wrap.appendChild(banner);
+
