@@ -44,3 +44,11 @@
       "name": "authenticate/happy-path",
       "category": "authentication",
       "description": "Register then authenticate honestly; signature, origin and counter all valid.",
+      "expectation": "accept",
+      "outcome": "pass",
+      "detail": "ceremony accepted as expected",
+      "duration_ns": 512700
+    },
+    {
+      "name": "authenticate/replayed-challenge",
+      "category": "authentication",
