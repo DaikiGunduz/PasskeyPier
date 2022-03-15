@@ -7,3 +7,6 @@
   --beam: #ffd166;
   --pass: #3ddc97;
   --fail: #ff6b6b;
+  --line: #234a68;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
