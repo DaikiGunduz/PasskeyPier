@@ -14,3 +14,12 @@ func nowNS() int64 { return time.Now().UnixNano() }
 // mismatched challenge. It returns the RP verification error.
 func authenticateWithChallengeMismatch(rp *RelyingParty, va *VirtualAuthenticator, signChallenge, verifyChallenge Challenge, origin string) error {
 	cred, err := selectCredential(va, rp.ID, nil)
+	if err != nil {
+		return err
+	}
+	cred.signCount++
+
+	cd := ClientData{
+		Type:      TypeGet,
+		Challenge: signChallenge.String(),
+		Origin:    origin,
