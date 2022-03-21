@@ -82,3 +82,24 @@ func DefaultScenarios() []Scenario {
 	}
 
 	// registerHelper performs an honest registration and returns state.
+	registerHelper := func(rp *RelyingParty, va *VirtualAuthenticator, uv UserVerification) (*RegistrationResult, error) {
+		ch, err := NewChallenge(DefaultChallengeLen)
+		if err != nil {
+			return nil, err
+		}
+		return Register(rp, va, RegistrationOptions{
+			Challenge:        ch,
+			UserHandle:       []byte("user-42"),
+			UserVerification: uv,
+		}, Origin(origin))
+	}
+
+	return []Scenario{
+		{
+			Name:        "register/happy-path-uv-preferred",
+			Category:    "registration",
+			Description: "Honest registration with a UV-capable authenticator and preferred policy.",
+			Expectation: ExpectAccept,
+			Run: func() error {
+				rp, va := newPair(true)
+				_, err := registerHelper(rp, va, UVPreferred)
