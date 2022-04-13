@@ -26,3 +26,13 @@ type VirtualAuthenticator struct {
 }
 
 type credential struct {
+	id        []byte
+	priv      ed25519.PrivateKey
+	pub       ed25519.PublicKey
+	rpID      string
+	signCount uint32
+	backedUp  bool
+}
+
+// NewVirtualAuthenticator constructs an authenticator with the given UV
+// capability. The AAGUID is left zero (privacy-preserving default).
