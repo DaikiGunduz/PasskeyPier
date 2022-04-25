@@ -57,3 +57,13 @@ func BuildReport(results []ScenarioResult) Report {
 			c.Passed++
 		} else {
 			c.Failed++
+		}
+	}
+	summary.AllPassed = summary.Failed == 0 && summary.Total > 0
+
+	cats := make([]CategoryTotals, 0, len(catMap))
+	for _, c := range catMap {
+		cats = append(cats, *c)
+	}
+	sort.Slice(cats, func(i, j int) bool { return cats[i].Category < cats[j].Category })
+
