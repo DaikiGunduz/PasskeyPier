@@ -10,3 +10,5 @@ import (
 const (
 	minChallengeLen     = 16
 	DefaultChallengeLen = 32
+)
+
