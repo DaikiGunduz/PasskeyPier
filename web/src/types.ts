@@ -18,3 +18,6 @@ export interface ScenarioResult {
 export interface ReportSummary {
   total: number;
   passed: number;
+  failed: number;
+  all_passed: boolean;
+}
