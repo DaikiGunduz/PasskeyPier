@@ -9,3 +9,5 @@ import (
 type Outcome string
 
 const (
+	OutcomePass Outcome = "pass"
+	OutcomeFail Outcome = "fail"
