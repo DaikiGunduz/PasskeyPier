@@ -7,3 +7,7 @@ GO      ?= go
 PKG     := ./...
 BIN     := passkeypier
 REPORT  := report.json
+
+.PHONY: all
+all: build test ## build and test everything (default)
+
