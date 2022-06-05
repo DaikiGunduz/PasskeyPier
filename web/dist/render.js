@@ -18,3 +18,10 @@ function formatDuration(ns) {
 function renderSummary(report) {
     const wrap = el("div", "summary");
     const banner = el("div", report.summary.all_passed ? "banner banner-pass" : "banner banner-fail", report.summary.all_passed
+        ? "ALL SCENARIOS PASSED"
+        : "CONFORMANCE FAILURES PRESENT");
+    wrap.appendChild(banner);
+    const meta = el("div", "meta");
+    meta.appendChild(el("span", "meta-item", `tool: ${report.tool}`));
+    meta.appendChild(el("span", "meta-item", `schema: ${report.schema}`));
+    meta.appendChild(el("span", "meta-item", `generated: ${report.generated_at}`));
