@@ -49,3 +49,16 @@
       "detail": "ceremony accepted as expected",
       "duration_ns": 514600
     },
+    {
+      "name": "authenticate/replayed-challenge",
+      "category": "authentication",
+      "description": "Reusing a stale challenge from a prior ceremony must fail the challenge check.",
+      "expectation": "reject",
+      "outcome": "pass",
+      "detail": "rejected as expected: harbor: challenge mismatch (possible replay or wrong ceremony)",
+      "duration_ns": 0
+    },
+    {
+      "name": "authenticate/tampered-signature",
+      "category": "security",
+      "description": "Flipping a byte of the assertion signature must fail Ed25519 verification.",
