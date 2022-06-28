@@ -6,3 +6,6 @@ import (
 	"strings"
 	"testing"
 )
+
+const (
+	testRPID   = "harbor.example"
