@@ -28,3 +28,9 @@ func Example_registerAndAuthenticate() {
 	}
 	reg, err := harbor.Register(rp, va, harbor.RegistrationOptions{
 		Challenge:        regChallenge,
+		UserHandle:       []byte("mariner-1"),
+		UserVerification: harbor.UVPreferred,
+	}, harbor.Origin(origin))
+	if err != nil {
+		panic(err)
+	}
