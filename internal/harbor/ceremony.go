@@ -80,3 +80,24 @@ func Register(rp *RelyingParty, va *VirtualAuthenticator, opts RegistrationOptio
 	}
 	if err := verifyRPIDHash(ad, rp.ID); err != nil {
 		return nil, err
+	}
+	if err := verifyUVFlag(ad, opts.UserVerification); err != nil {
+		return nil, err
+	}
+	if !ad.Has(FlagUserPresent) {
+		return nil, errors.New("harbor: user presence flag not set")
+	}
+
+	rp.Store[EncodeBase64URL(cred.id)] = &RegisteredCredential{
+		ID:             cred.id,
+		PublicKey:      append([]byte(nil), cred.pub...),
+		SignCount:      ad.SignCount,
+		RPID:           rp.ID,
+		UserHandle:     append([]byte(nil), opts.UserHandle...),
+		BackupEligible: cred.backedUp,
+	}
+
+	return &RegistrationResult{
+		CredentialID:      append([]byte(nil), cred.id...),
+		ClientDataJSON:    cdJSON,
+		AuthenticatorData: adBytes,
