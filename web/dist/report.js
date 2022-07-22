@@ -38,3 +38,16 @@ function parseScenario(v) {
     }
     const expectation = requireString(v, "expectation");
     if (expectation !== "accept" && expectation !== "reject") {
+        throw new ReportError(`invalid expectation "${expectation}"`);
+    }
+    return {
+        name: requireString(v, "name"),
+        category: requireString(v, "category"),
+        description: requireString(v, "description"),
+        expectation,
+        outcome,
+        detail: requireString(v, "detail"),
+        duration_ns: requireNumber(v, "duration_ns"),
+    };
+}
+// parseReport validates and narrows an unknown JSON value to a Report.
