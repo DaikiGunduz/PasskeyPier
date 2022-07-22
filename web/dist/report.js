@@ -3,3 +3,4 @@
 // before the UI renders it.
 import { EXPECTED_SCHEMA } from "./types.js";
 export class ReportError extends Error {
+}
