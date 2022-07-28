@@ -11,3 +11,10 @@ function getTarget() {
 }
 function handleText(text) {
     const target = getTarget();
+    try {
+        const report = parseReportText(text);
+        renderReport(target, report);
+    }
+    catch (e) {
+        if (e instanceof ReportError) {
+            renderError(target, e.message);
