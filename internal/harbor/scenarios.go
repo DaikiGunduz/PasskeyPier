@@ -124,3 +124,25 @@ func DefaultScenarios() []Scenario {
 			Expectation: ExpectAccept,
 			Run: func() error {
 				rp, va := newPair(true)
+				if _, err := registerHelper(rp, va, UVPreferred); err != nil {
+					return err
+				}
+				ch, err := NewChallenge(DefaultChallengeLen)
+				if err != nil {
+					return err
+				}
+				_, err = Authenticate(rp, va, AuthenticationOptions{
+					Challenge:        ch,
+					UserVerification: UVPreferred,
+				}, Origin(origin))
+				return err
+			},
+		},
+		{
+			Name:        "authenticate/wrong-origin",
+			Category:    "authentication",
+			Description: "An assertion whose client data reports a foreign origin must be rejected.",
+			Expectation: ExpectReject,
+			Run: func() error {
+				rp, va := newPair(true)
+				if _, err := registerHelper(rp, va, UVPreferred); err != nil {
