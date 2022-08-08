@@ -23,3 +23,7 @@ transport bindings. The exact scope and the honest list of non-goals live in
 
 ---
 
+## Chart of the harbor
+
+- [Why a pier](#why-a-pier)
+- [What sails in and out](#what-sails-in-and-out)
