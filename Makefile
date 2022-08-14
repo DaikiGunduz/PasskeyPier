@@ -11,3 +11,8 @@ REPORT  := report.json
 .PHONY: all
 all: build test ## build and test everything (default)
 
+.PHONY: build
+build: ## compile the Go CLI
+	$(GO) build -o $(BIN) ./cmd/passkeypier
+
+.PHONY: test
