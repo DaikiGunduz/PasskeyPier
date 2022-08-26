@@ -34,3 +34,9 @@ func Example_registerAndAuthenticate() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("registered=%v userVerified=%v\n", rp.Store[harbor.EncodeBase64URL(reg.CredentialID)] != nil, reg.UserVerified)
+
+	// --- Authentication ceremony (webauthn.get) ---
+	authChallenge, err := harbor.NewChallenge(harbor.DefaultChallengeLen)
+	if err != nil {
+		panic(err)
