@@ -18,3 +18,9 @@ function handleText(text) {
     catch (e) {
         if (e instanceof ReportError) {
             renderError(target, e.message);
+        }
+        else {
+            renderError(target, `unexpected error: ${e.message}`);
+        }
+    }
+}
