@@ -12,3 +12,6 @@ const (
 	DefaultChallengeLen = 32
 )
 
+// Challenge is a server-generated cryptographic random nonce that binds a
+// ceremony to a single attempt and prevents replay.
+type Challenge []byte
