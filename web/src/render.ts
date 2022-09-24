@@ -31,3 +31,14 @@ function renderSummary(report: Report): HTMLElement {
   );
   wrap.appendChild(banner);
 
+  const meta = el("div", "meta");
+  meta.appendChild(el("span", "meta-item", `tool: ${report.tool}`));
+  meta.appendChild(el("span", "meta-item", `schema: ${report.schema}`));
+  meta.appendChild(el("span", "meta-item", `generated: ${report.generated_at}`));
+  meta.appendChild(
+    el(
+      "span",
+      "meta-item",
+      `${report.summary.passed}/${report.summary.total} passed`,
+    ),
+  );
