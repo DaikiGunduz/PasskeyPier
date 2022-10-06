@@ -40,3 +40,9 @@ func Example_registerAndAuthenticate() {
 	authChallenge, err := harbor.NewChallenge(harbor.DefaultChallengeLen)
 	if err != nil {
 		panic(err)
+	}
+	auth, err := harbor.Authenticate(rp, va, harbor.AuthenticationOptions{
+		Challenge:        authChallenge,
+		UserVerification: harbor.UVPreferred,
+	}, harbor.Origin(origin))
+	if err != nil {
