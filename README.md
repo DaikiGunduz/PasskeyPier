@@ -27,3 +27,7 @@ transport bindings. The exact scope and the honest list of non-goals live in
 
 - [Why a pier](#why-a-pier)
 - [What sails in and out](#what-sails-in-and-out)
+- [Quick departure](#quick-departure)
+- [The two ceremonies at the dock](#the-two-ceremonies-at-the-dock)
+- [Command transcripts](#command-transcripts)
+- [Conformance scenarios](#conformance-scenarios)
