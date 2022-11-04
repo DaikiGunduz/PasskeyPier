@@ -37,3 +37,22 @@ func main() {
 		os.Exit(cmdRun(os.Args[2:]))
 	case "demo":
 		os.Exit(cmdDemo(os.Args[2:]))
+	case "list":
+		os.Exit(cmdList())
+	case "version":
+		fmt.Printf("passkeypier %s\n", version)
+	case "-h", "--help", "help":
+		fmt.Print(usage)
+	default:
+		fmt.Fprintf(os.Stderr, "unknown command %q\n\n%s", os.Args[1], usage)
+		os.Exit(2)
+	}
+}
+
+func cmdRun(args []string) int {
+	fs := flag.NewFlagSet("run", flag.ExitOnError)
+	format := fs.String("format", "text", "report format: text or json")
+	out := fs.String("out", "", "output file (default stdout)")
+	_ = fs.Parse(args)
+
+	results := harbor.RunScenarios(harbor.DefaultScenarios())
