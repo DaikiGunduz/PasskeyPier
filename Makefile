@@ -16,3 +16,7 @@ build: ## compile the Go CLI
 	$(GO) build -o $(BIN) ./cmd/passkeypier
 
 .PHONY: test
+test: ## run Go unit tests and examples
+	$(GO) test $(PKG)
+
+.PHONY: cover
