@@ -17,3 +17,9 @@ function requireString(o: Record<string, unknown>, key: string): string {
   }
   return v;
 }
+
+function requireNumber(o: Record<string, unknown>, key: string): number {
+  const v = o[key];
+  if (typeof v !== "number" || Number.isNaN(v)) {
+    throw new ReportError(`field "${key}" must be a number`);
+  }
