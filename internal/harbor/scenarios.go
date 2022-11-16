@@ -11,3 +11,6 @@ type Outcome string
 const (
 	OutcomePass Outcome = "pass"
 	OutcomeFail Outcome = "fail"
+)
+
+// Expectation declares whether a scenario is expected to succeed or to be
