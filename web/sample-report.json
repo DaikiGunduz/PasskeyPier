@@ -59,3 +59,11 @@
       "duration_ns": 0
     },
     {
+      "name": "authenticate/tampered-signature",
+      "category": "security",
+      "description": "Flipping a byte of the assertion signature must fail Ed25519 verification.",
+      "expectation": "reject",
+      "outcome": "pass",
+      "detail": "rejected as expected: harbor: assertion signature verification failed",
+      "duration_ns": 0
+    },
