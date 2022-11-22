@@ -4,3 +4,4 @@
 import { EXPECTED_SCHEMA } from "./types.js";
 export class ReportError extends Error {
 }
+function isObject(v) {
