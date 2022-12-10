@@ -36,3 +36,12 @@ type credential struct {
 
 // NewVirtualAuthenticator constructs an authenticator with the given UV
 // capability. The AAGUID is left zero (privacy-preserving default).
+func NewVirtualAuthenticator(supportsUV bool) *VirtualAuthenticator {
+	return &VirtualAuthenticator{
+		SupportsUV: supportsUV,
+		creds:      make(map[string]*credential),
+	}
+}
+
+// CredentialCount reports the number of resident credentials.
+func (va *VirtualAuthenticator) CredentialCount() int { return len(va.creds) }
