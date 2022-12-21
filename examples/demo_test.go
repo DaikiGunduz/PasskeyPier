@@ -46,3 +46,9 @@ func Example_registerAndAuthenticate() {
 		UserVerification: harbor.UVPreferred,
 	}, harbor.Origin(origin))
 	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("authenticated userHandle=%s sigLen=%d\n", string(auth.UserHandle), len(auth.Signature))
+
+	// Output:
+	// registered=true userVerified=true
