@@ -13,3 +13,8 @@ const (
 
 // Validate ensures the policy value is one of the recognized enum members.
 func (uv UserVerification) Validate() error {
+	switch uv {
+	case UVRequired, UVPreferred, UVDiscouraged:
+		return nil
+	default:
+		return fmt.Errorf("harbor: invalid user verification requirement %q", uv)
