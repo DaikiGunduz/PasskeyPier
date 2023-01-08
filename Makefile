@@ -20,3 +20,8 @@ test: ## run Go unit tests and examples
 	$(GO) test $(PKG)
 
 .PHONY: cover
+cover: ## run tests with coverage summary
+	$(GO) test -cover $(PKG)
+
+.PHONY: vet
+vet: ## run go vet
