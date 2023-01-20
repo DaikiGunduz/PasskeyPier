@@ -67,3 +67,13 @@ func BuildReport(results []ScenarioResult) Report {
 	}
 	sort.Slice(cats, func(i, j int) bool { return cats[i].Category < cats[j].Category })
 
+	return Report{
+		Schema:      ReportSchemaVersion,
+		Tool:        "passkeypier",
+		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
+		Summary:     summary,
+		Categories:  cats,
+		Results:     results,
+	}
+}
+
