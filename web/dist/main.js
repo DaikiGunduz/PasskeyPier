@@ -24,3 +24,10 @@ function handleText(text) {
         }
     }
 }
+function wireFileInput() {
+    const input = document.getElementById("file");
+    if (!input)
+        return;
+    input.addEventListener("change", () => {
+        const file = input.files?.[0];
+        if (!file)
