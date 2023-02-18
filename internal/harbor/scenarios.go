@@ -14,3 +14,6 @@ const (
 )
 
 // Expectation declares whether a scenario is expected to succeed or to be
+// rejected by the RP. Negative scenarios ("expect rejection") are how the lab
+// exercises the security checks: a scenario that *should* be rejected but is
+// accepted is a conformance failure.
