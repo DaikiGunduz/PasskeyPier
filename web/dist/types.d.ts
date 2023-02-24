@@ -8,3 +8,8 @@ export interface ScenarioResult {
     outcome: Outcome;
     detail: string;
     duration_ns: number;
+}
+export interface ReportSummary {
+    total: number;
+    passed: number;
+    failed: number;
