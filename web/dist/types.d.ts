@@ -13,3 +13,8 @@ export interface ReportSummary {
     total: number;
     passed: number;
     failed: number;
+    all_passed: boolean;
+}
+export interface CategoryTotals {
+    category: string;
+    passed: number;
