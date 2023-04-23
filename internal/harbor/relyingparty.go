@@ -18,3 +18,9 @@ func (uv UserVerification) Validate() error {
 		return nil
 	default:
 		return fmt.Errorf("harbor: invalid user verification requirement %q", uv)
+	}
+}
+
+// RelyingParty holds server-side configuration and the credential store used to
+// validate ceremonies. Origin is the single expected origin; RPID is the
+// relying-party identifier (a registrable domain suffix of the origin host).
