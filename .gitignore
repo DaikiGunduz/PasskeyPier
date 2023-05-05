@@ -3,3 +3,4 @@
 /passkeypier.exe
 *.test
 *.out
+coverage.*
