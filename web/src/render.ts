@@ -4,3 +4,4 @@
 import { Report, ScenarioResult } from "./types.js";
 
 function el<K extends keyof HTMLElementTagNameMap>(
+  tag: K,
