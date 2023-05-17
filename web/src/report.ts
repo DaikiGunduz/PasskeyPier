@@ -23,3 +23,9 @@ function requireNumber(o: Record<string, unknown>, key: string): number {
   if (typeof v !== "number" || Number.isNaN(v)) {
     throw new ReportError(`field "${key}" must be a number`);
   }
+  return v;
+}
+
+function requireBool(o: Record<string, unknown>, key: string): boolean {
+  const v = o[key];
+  if (typeof v !== "boolean") {
