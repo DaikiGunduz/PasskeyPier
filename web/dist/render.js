@@ -25,3 +25,9 @@ function renderSummary(report) {
     meta.appendChild(el("span", "meta-item", `tool: ${report.tool}`));
     meta.appendChild(el("span", "meta-item", `schema: ${report.schema}`));
     meta.appendChild(el("span", "meta-item", `generated: ${report.generated_at}`));
+    meta.appendChild(el("span", "meta-item", `${report.summary.passed}/${report.summary.total} passed`));
+    wrap.appendChild(meta);
+    return wrap;
+}
+function renderCategories(report) {
+    const wrap = el("div", "categories");
