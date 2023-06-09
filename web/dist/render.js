@@ -31,3 +31,10 @@ function renderSummary(report) {
 }
 function renderCategories(report) {
     const wrap = el("div", "categories");
+    wrap.appendChild(el("h2", undefined, "By category"));
+    const list = el("div", "cat-grid");
+    for (const c of report.categories) {
+        const card = el("div", c.failed === 0 ? "cat-card ok" : "cat-card bad");
+        card.appendChild(el("div", "cat-name", c.category));
+        card.appendChild(el("div", "cat-counts", `pass ${c.passed} · fail ${c.failed}`));
+        list.appendChild(card);
