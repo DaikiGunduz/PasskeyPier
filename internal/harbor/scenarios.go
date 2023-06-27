@@ -17,3 +17,6 @@ const (
 // rejected by the RP. Negative scenarios ("expect rejection") are how the lab
 // exercises the security checks: a scenario that *should* be rejected but is
 // accepted is a conformance failure.
+type Expectation string
+
+const (
