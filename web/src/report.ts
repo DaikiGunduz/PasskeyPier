@@ -29,3 +29,10 @@ function requireNumber(o: Record<string, unknown>, key: string): number {
 function requireBool(o: Record<string, unknown>, key: string): boolean {
   const v = o[key];
   if (typeof v !== "boolean") {
+    throw new ReportError(`field "${key}" must be a boolean`);
+  }
+  return v;
+}
+
+function parseScenario(v: unknown): ScenarioResult {
+  if (!isObject(v)) {
