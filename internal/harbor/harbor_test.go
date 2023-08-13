@@ -91,3 +91,49 @@ func TestAuthenticatorDataMarshalParse(t *testing.T) {
 	}
 	if parsed.SignCount != 7 {
 		t.Fatalf("signCount = %d, want 7", parsed.SignCount)
+	}
+	if !parsed.Has(FlagUserVerified) {
+		t.Fatal("expected UV flag set")
+	}
+	if !bytes.Equal(parsed.Trailing, []byte{1, 2, 3}) {
+		t.Fatalf("trailing = %x, want 010203", parsed.Trailing)
+	}
+	if _, err := ParseAuthenticatorData(raw[:10]); err == nil {
+		t.Fatal("expected error parsing truncated data")
+	}
+}
+
+func TestClientDataHashDeterministic(t *testing.T) {
+	cd := ClientData{Type: TypeGet, Challenge: "abc", Origin: testOrigin}
+	h1, err := cd.Hash()
+	if err != nil {
+		t.Fatalf("hash: %v", err)
+	}
+	h2, _ := cd.Hash()
+	if !bytes.Equal(h1, h2) {
+		t.Fatal("client data hash not deterministic")
+	}
+	if len(h1) != 32 {
+		t.Fatalf("hash length = %d, want 32", len(h1))
+	}
+}
+
+func TestRegisterAndAuthenticateHappyPath(t *testing.T) {
+	rp := NewRelyingParty(testRPID, testOrigin)
+	va := NewVirtualAuthenticator(true)
+
+	reg, err := Register(rp, va, RegistrationOptions{
+		Challenge:        mustChallenge(t),
+		UserHandle:       []byte("user-1"),
+		UserVerification: UVPreferred,
+	}, Origin(testOrigin))
+	if err != nil {
+		t.Fatalf("Register: %v", err)
+	}
+	if !reg.UserVerified {
+		t.Fatal("expected user verified on UV-capable authenticator")
+	}
+	if rp.Store[EncodeBase64URL(reg.CredentialID)] == nil {
+		t.Fatal("credential not stored by RP")
+	}
+
