@@ -21,3 +21,6 @@ jobs:
       - name: Verify go.mod is tidy
         run: |
           go mod tidy
+          git diff --exit-code go.mod
+      - name: Vet
+        run: go vet ./...
