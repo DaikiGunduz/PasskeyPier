@@ -9,3 +9,6 @@ import (
 
 const (
 	testRPID   = "harbor.example"
+	testOrigin = "https://harbor.example"
+)
+
