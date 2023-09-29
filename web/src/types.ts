@@ -24,3 +24,7 @@ export interface ReportSummary {
 
 export interface CategoryTotals {
   category: string;
+  passed: number;
+  failed: number;
+}
+
