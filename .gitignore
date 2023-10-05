@@ -4,3 +4,5 @@
 *.test
 *.out
 coverage.*
+
+# Generated reports (regenerate with `make report`)
