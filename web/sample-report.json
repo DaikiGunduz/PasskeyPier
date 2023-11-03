@@ -67,3 +67,11 @@
       "detail": "rejected as expected: harbor: assertion signature verification failed",
       "duration_ns": 0
     },
+    {
+      "name": "authenticate/uv-required-satisfied",
+      "category": "policy",
+      "description": "UV=required with a UV-capable authenticator sets the UV flag and passes.",
+      "expectation": "accept",
+      "outcome": "pass",
+      "detail": "ceremony accepted as expected",
+      "duration_ns": 0
