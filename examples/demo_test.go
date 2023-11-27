@@ -52,3 +52,9 @@ func Example_registerAndAuthenticate() {
 
 	// Output:
 	// registered=true userVerified=true
+	// authenticated userHandle=mariner-1 sigLen=64
+}
+
+// ExampleConformanceSuite runs the built-in scenario suite and prints the
+// summary counts, showing how a report is produced programmatically.
+func Example_conformanceSuite() {
