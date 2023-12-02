@@ -56,3 +56,23 @@ func cmdRun(args []string) int {
 	_ = fs.Parse(args)
 
 	results := harbor.RunScenarios(harbor.DefaultScenarios())
+	report := harbor.BuildReport(results)
+
+	w := os.Stdout
+	if *out != "" {
+		f, err := os.Create(*out)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "passkeypier: %v\n", err)
+			return 1
+		}
+		defer f.Close()
+		w = f
+	}
+
+	var err error
+	switch *format {
+	case "json":
+		err = report.WriteJSON(w)
+	case "text":
+		err = report.WriteText(w)
+	default:
