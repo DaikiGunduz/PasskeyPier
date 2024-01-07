@@ -76,3 +76,22 @@ func cmdRun(args []string) int {
 	case "text":
 		err = report.WriteText(w)
 	default:
+		fmt.Fprintf(os.Stderr, "passkeypier: unknown format %q\n", *format)
+		return 2
+	}
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "passkeypier: %v\n", err)
+		return 1
+	}
+
+	if !report.Summary.AllPassed {
+		return 1
+	}
+	return 0
+}
+
+func cmdDemo(args []string) int {
+	fs := flag.NewFlagSet("demo", flag.ExitOnError)
+	uvFlag := fs.String("uv", "preferred", "user verification: required, preferred or discouraged")
+	_ = fs.Parse(args)
+
