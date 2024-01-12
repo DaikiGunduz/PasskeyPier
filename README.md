@@ -31,3 +31,7 @@ transport bindings. The exact scope and the honest list of non-goals live in
 - [The two ceremonies at the dock](#the-two-ceremonies-at-the-dock)
 - [Command transcripts](#command-transcripts)
 - [Conformance scenarios](#conformance-scenarios)
+- [The report format](#the-report-format)
+- [The browser lab](#the-browser-lab)
+- [Layout of the harbor](#layout-of-the-harbor)
+- [Building, testing, and CI](#building-testing-and-ci)
