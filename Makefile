@@ -25,3 +25,7 @@ cover: ## run tests with coverage summary
 
 .PHONY: vet
 vet: ## run go vet
+	$(GO) vet $(PKG)
+
+.PHONY: run
+run: ## run the conformance suite (text)
