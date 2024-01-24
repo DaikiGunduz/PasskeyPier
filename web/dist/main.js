@@ -31,3 +31,10 @@ function wireFileInput() {
     input.addEventListener("change", () => {
         const file = input.files?.[0];
         if (!file)
+            return;
+        file.text().then(handleText);
+    });
+}
+function wireDrop() {
+    const zone = document.getElementById("drop");
+    if (!zone)
