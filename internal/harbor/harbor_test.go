@@ -12,3 +12,5 @@ const (
 	testOrigin = "https://harbor.example"
 )
 
+func mustChallenge(t *testing.T) Challenge {
+	t.Helper()
