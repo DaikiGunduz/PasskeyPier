@@ -29,3 +29,8 @@ vet: ## run go vet
 
 .PHONY: run
 run: ## run the conformance suite (text)
+	$(GO) run ./cmd/passkeypier run
+
+.PHONY: report
+report: ## write a JSON conformance report to report.json
+	$(GO) run ./cmd/passkeypier run -format json -out $(REPORT)
