@@ -55,3 +55,12 @@ func (va *VirtualAuthenticator) makeCredential(rpID string) (*credential, error)
 	}
 	id := make([]byte, 16)
 	if _, err := rand.Read(id); err != nil {
+		return nil, fmt.Errorf("harbor: generating credential id: %w", err)
+	}
+	c := &credential{
+		id:        id,
+		priv:      priv,
+		pub:       pub,
+		rpID:      rpID,
+		signCount: 0,
+		backedUp:  va.BackupEligible,
