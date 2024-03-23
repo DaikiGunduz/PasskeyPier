@@ -9,3 +9,4 @@ A conformance report produced by the Go CLI. Regenerate it with:
 ```sh
 go run ./cmd/passkeypier run -format json -out examples/sample-report.json
 ```
+
