@@ -38,3 +38,10 @@ function renderCategories(report) {
         card.appendChild(el("div", "cat-name", c.category));
         card.appendChild(el("div", "cat-counts", `pass ${c.passed} · fail ${c.failed}`));
         list.appendChild(card);
+    }
+    wrap.appendChild(list);
+    return wrap;
+}
+function renderScenario(r) {
+    const row = el("details", r.outcome === "pass" ? "scenario pass" : "scenario fail");
+    const summary = el("summary");
