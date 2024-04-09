@@ -10,3 +10,4 @@ A conformance report produced by the Go CLI. Regenerate it with:
 go run ./cmd/passkeypier run -format json -out examples/sample-report.json
 ```
 
+The TypeScript browser lab (`web/`) loads this file to render the report.
