@@ -17,3 +17,5 @@
 
 body {
   margin: 0;
+  background: linear-gradient(180deg, #071320 0%, var(--bg) 100%);
+  color: var(--ink);
