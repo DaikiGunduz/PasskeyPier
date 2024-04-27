@@ -45,3 +45,10 @@ function renderCategories(report) {
 function renderScenario(r) {
     const row = el("details", r.outcome === "pass" ? "scenario pass" : "scenario fail");
     const summary = el("summary");
+    const badge = el("span", r.outcome === "pass" ? "badge badge-pass" : "badge badge-fail", r.outcome.toUpperCase());
+    summary.appendChild(badge);
+    summary.appendChild(el("span", "sc-name", r.name));
+    summary.appendChild(el("span", "sc-cat", r.category));
+    summary.appendChild(el("span", "sc-exp", `expect ${r.expectation}`));
+    summary.appendChild(el("span", "sc-dur", formatDuration(r.duration_ns)));
+    row.appendChild(summary);
