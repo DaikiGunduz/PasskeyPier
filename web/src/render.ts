@@ -53,3 +53,14 @@ function renderCategories(report: Report): HTMLElement {
   for (const c of report.categories) {
     const card = el("div", c.failed === 0 ? "cat-card ok" : "cat-card bad");
     card.appendChild(el("div", "cat-name", c.category));
+    card.appendChild(
+      el("div", "cat-counts", `pass ${c.passed} · fail ${c.failed}`),
+    );
+    list.appendChild(card);
+  }
+  wrap.appendChild(list);
+  return wrap;
+}
+
+function renderScenario(r: ScenarioResult): HTMLElement {
+  const row = el("details", r.outcome === "pass" ? "scenario pass" : "scenario fail");
