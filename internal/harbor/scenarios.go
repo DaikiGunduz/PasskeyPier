@@ -20,3 +20,5 @@ const (
 type Expectation string
 
 const (
+	ExpectAccept Expectation = "accept"
+	ExpectReject Expectation = "reject"
