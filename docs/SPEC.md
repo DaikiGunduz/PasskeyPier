@@ -7,3 +7,5 @@ computed, and — just as importantly — what it deliberately does **not** do.
 
 ## 1. Scope and non-goals
 
+passkeypier is a virtual conformance lab for exploring the data-model checks a
+WebAuthn [relying party](https://www.w3.org/TR/webauthn-2/#relying-party)
