@@ -34,3 +34,7 @@ run: ## run the conformance suite (text)
 .PHONY: report
 report: ## write a JSON conformance report to report.json
 	$(GO) run ./cmd/passkeypier run -format json -out $(REPORT)
+
+.PHONY: demo
+demo: ## run one register+authenticate ceremony
+	$(GO) run ./cmd/passkeypier demo
