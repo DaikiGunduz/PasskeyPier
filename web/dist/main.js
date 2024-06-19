@@ -38,3 +38,9 @@ function wireFileInput() {
 function wireDrop() {
     const zone = document.getElementById("drop");
     if (!zone)
+        return;
+    zone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        zone.classList.add("drag");
+    });
+    zone.addEventListener("dragleave", () => zone.classList.remove("drag"));
