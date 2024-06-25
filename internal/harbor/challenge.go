@@ -15,3 +15,5 @@ const (
 // Challenge is a server-generated cryptographic random nonce that binds a
 // ceremony to a single attempt and prevents replay.
 type Challenge []byte
+
+// NewChallenge returns a cryptographically secure random challenge of the
