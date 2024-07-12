@@ -31,3 +31,14 @@ function wireFileInput(): void {
   input.addEventListener("change", () => {
     const file = input.files?.[0];
     if (!file) return;
+    file.text().then(handleText);
+  });
+}
+
+function wireDrop(): void {
+  const zone = document.getElementById("drop");
+  if (!zone) return;
+  zone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    zone.classList.add("drag");
+  });
