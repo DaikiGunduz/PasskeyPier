@@ -146,3 +146,24 @@ func DefaultScenarios() []Scenario {
 			Run: func() error {
 				rp, va := newPair(true)
 				if _, err := registerHelper(rp, va, UVPreferred); err != nil {
+					return err
+				}
+				ch, err := NewChallenge(DefaultChallengeLen)
+				if err != nil {
+					return err
+				}
+				_, err = Authenticate(rp, va, AuthenticationOptions{
+					Challenge:        ch,
+					UserVerification: UVPreferred,
+				}, CrossOrigin(badOrig))
+				return err
+			},
+		},
+		{
+			Name:        "authenticate/replayed-challenge",
+			Category:    "authentication",
+			Description: "Reusing a stale challenge from a prior ceremony must fail the challenge check.",
+			Expectation: ExpectReject,
+			Run: func() error {
+				rp, va := newPair(true)
+				if _, err := registerHelper(rp, va, UVPreferred); err != nil {
