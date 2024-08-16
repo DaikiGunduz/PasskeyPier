@@ -9,3 +9,4 @@ computed, and — just as importantly — what it deliberately does **not** do.
 
 passkeypier is a virtual conformance lab for exploring the data-model checks a
 WebAuthn [relying party](https://www.w3.org/TR/webauthn-2/#relying-party)
+performs during passkey registration and authentication. It is designed to run
