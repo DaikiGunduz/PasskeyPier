@@ -38,3 +38,8 @@ report: ## write a JSON conformance report to report.json
 .PHONY: demo
 demo: ## run one register+authenticate ceremony
 	$(GO) run ./cmd/passkeypier demo
+
+.PHONY: web-sample
+web-sample: ## generate the sample report consumed by the web lab
+	$(GO) run ./cmd/passkeypier run -format json -out web/sample-report.json
+	$(GO) run ./cmd/passkeypier run -format json -out examples/sample-report.json
