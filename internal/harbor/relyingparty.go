@@ -39,3 +39,9 @@ type RegisteredCredential struct {
 	RPID          string
 	UserHandle    []byte
 	BackupEligible bool
+}
+
+// NewRelyingParty constructs an RP with an empty credential store.
+func NewRelyingParty(id, origin string) *RelyingParty {
+	return &RelyingParty{
+		ID:     id,
