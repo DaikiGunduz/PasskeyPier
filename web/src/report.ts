@@ -49,3 +49,9 @@ function parseScenario(v: unknown): ScenarioResult {
   return {
     name: requireString(v, "name"),
     category: requireString(v, "category"),
+    description: requireString(v, "description"),
+    expectation,
+    outcome,
+    detail: requireString(v, "detail"),
+    duration_ns: requireNumber(v, "duration_ns"),
+  };
