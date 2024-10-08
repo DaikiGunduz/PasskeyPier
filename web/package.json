@@ -8,3 +8,5 @@
     "typecheck": "tsc --noEmit",
     "build": "tsc"
   },
+  "devDependencies": {
+    "typescript": "5.5.4"
