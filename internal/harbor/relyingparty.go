@@ -45,3 +45,8 @@ type RegisteredCredential struct {
 func NewRelyingParty(id, origin string) *RelyingParty {
 	return &RelyingParty{
 		ID:     id,
+		Origin: origin,
+		Store:  make(map[string]*RegisteredCredential),
+	}
+}
+
