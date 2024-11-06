@@ -188,3 +188,24 @@ func DefaultScenarios() []Scenario {
 			Expectation: ExpectAccept,
 			Run: func() error {
 				rp, va := newPair(true)
+				if _, err := registerHelper(rp, va, UVRequired); err != nil {
+					return err
+				}
+				ch, err := NewChallenge(DefaultChallengeLen)
+				if err != nil {
+					return err
+				}
+				_, err = Authenticate(rp, va, AuthenticationOptions{
+					Challenge:        ch,
+					UserVerification: UVRequired,
+				}, Origin(origin))
+				return err
+			},
+		},
+		{
+			Name:        "authenticate/cloned-counter-regression",
+			Category:    "security",
+			Description: "A signature counter that fails to advance signals a cloned authenticator and must be rejected.",
+			Expectation: ExpectReject,
+			Run: func() error {
+				rp, va := newPair(true)
