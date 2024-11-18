@@ -55,3 +55,9 @@ function parseScenario(v: unknown): ScenarioResult {
     detail: requireString(v, "detail"),
     duration_ns: requireNumber(v, "duration_ns"),
   };
+}
+
+// parseReport validates and narrows an unknown JSON value to a Report.
+export function parseReport(raw: unknown): Report {
+  if (!isObject(raw)) {
+    throw new ReportError("report must be a JSON object");
