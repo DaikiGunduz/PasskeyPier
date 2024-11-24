@@ -3,3 +3,4 @@
 // no network requests, no remote assets.
 
 import { parseReportText, ReportError } from "./report.js";
+import { renderReport, renderError } from "./render.js";
