@@ -101,3 +101,16 @@
       "expectation": "accept",
       "outcome": "pass",
       "detail": "ceremony accepted as expected",
+      "duration_ns": 517400
+    },
+    {
+      "name": "register/uv-required-without-uv-support",
+      "category": "registration",
+      "description": "UV=required against an authenticator that cannot verify the user must be rejected.",
+      "expectation": "reject",
+      "outcome": "pass",
+      "detail": "rejected as expected: harbor: authenticator does not support user verification",
+      "duration_ns": 0
+    }
+  ]
+}
