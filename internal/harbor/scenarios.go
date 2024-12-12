@@ -22,3 +22,6 @@ type Expectation string
 const (
 	ExpectAccept Expectation = "accept"
 	ExpectReject Expectation = "reject"
+)
+
+// ScenarioResult records the outcome of one scenario.
