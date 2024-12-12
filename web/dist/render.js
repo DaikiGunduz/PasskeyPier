@@ -58,3 +58,10 @@ function renderScenario(r) {
     row.appendChild(body);
     return row;
 }
+// renderReport clears the target and renders the full report into it.
+export function renderReport(target, report) {
+    target.textContent = "";
+    target.appendChild(renderSummary(report));
+    target.appendChild(renderCategories(report));
+    const results = el("div", "results");
+    results.appendChild(el("h2", undefined, "Scenarios"));
