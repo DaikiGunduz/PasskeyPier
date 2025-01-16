@@ -26,3 +26,7 @@ func EncodeBase64URL(raw []byte) string {
 }
 
 // DecodeBase64URL decodes unpadded base64url text into raw bytes. It also
+// tolerates padded input to be forgiving of hand-authored fixtures.
+func DecodeBase64URL(s string) ([]byte, error) {
+	if raw, err := b64url.DecodeString(s); err == nil {
+		return raw, nil
