@@ -43,3 +43,7 @@ demo: ## run one register+authenticate ceremony
 web-sample: ## generate the sample report consumed by the web lab
 	$(GO) run ./cmd/passkeypier run -format json -out web/sample-report.json
 	$(GO) run ./cmd/passkeypier run -format json -out examples/sample-report.json
+
+.PHONY: web-typecheck
+web-typecheck: ## typecheck the TypeScript lab (needs tsc)
+	cd web && tsc --noEmit
