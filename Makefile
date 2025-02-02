@@ -47,3 +47,8 @@ web-sample: ## generate the sample report consumed by the web lab
 .PHONY: web-typecheck
 web-typecheck: ## typecheck the TypeScript lab (needs tsc)
 	cd web && tsc --noEmit
+
+.PHONY: web-build
+web-build: ## compile the TypeScript lab to web/dist
+	cd web && tsc
+
