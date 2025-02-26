@@ -25,3 +25,6 @@ const (
 )
 
 // ScenarioResult records the outcome of one scenario.
+type ScenarioResult struct {
+	Name        string      `json:"name"`
+	Category    string      `json:"category"`
