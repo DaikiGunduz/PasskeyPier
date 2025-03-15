@@ -83,3 +83,10 @@
       "expectation": "reject",
       "outcome": "pass",
       "detail": "rejected as expected: harbor: origin \"https://evil.example\", want \"https://harbor.example\"",
+      "duration_ns": 0
+    },
+    {
+      "name": "authenticate/wrong-rp-binding",
+      "category": "security",
+      "description": "Authenticator data carrying a foreign RP ID hash must fail the RP ID hash check.",
+      "expectation": "reject",
