@@ -52,3 +52,7 @@ web-typecheck: ## typecheck the TypeScript lab (needs tsc)
 web-build: ## compile the TypeScript lab to web/dist
 	cd web && tsc
 
+.PHONY: clean
+clean: ## remove build artifacts
+	-rm -f $(BIN) $(BIN).exe $(REPORT)
+	-rm -rf web/dist
