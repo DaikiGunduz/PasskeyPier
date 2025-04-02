@@ -28,3 +28,6 @@ const (
 type ScenarioResult struct {
 	Name        string      `json:"name"`
 	Category    string      `json:"category"`
+	Description string      `json:"description"`
+	Expectation Expectation `json:"expectation"`
+	Outcome     Outcome     `json:"outcome"`
