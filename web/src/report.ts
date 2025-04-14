@@ -68,3 +68,9 @@ export function parseReport(raw: unknown): Report {
       `unsupported schema "${schema}", expected "${EXPECTED_SCHEMA}"`,
     );
   }
+  const summaryRaw = raw["summary"];
+  if (!isObject(summaryRaw)) {
+    throw new ReportError('field "summary" must be an object');
+  }
+  const categoriesRaw = raw["categories"];
+  if (!Array.isArray(categoriesRaw)) {
