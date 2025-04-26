@@ -64,3 +64,13 @@ func (va *VirtualAuthenticator) makeCredential(rpID string) (*credential, error)
 		rpID:      rpID,
 		signCount: 0,
 		backedUp:  va.BackupEligible,
+	}
+	va.creds[EncodeBase64URL(id)] = c
+	return c, nil
+}
+
+// lookup finds a resident credential by base64url id.
+func (va *VirtualAuthenticator) lookup(credIDB64 string) (*credential, bool) {
+	c, ok := va.creds[credIDB64]
+	return c, ok
+}
