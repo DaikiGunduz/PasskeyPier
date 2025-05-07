@@ -23,3 +23,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     signature verification, and signature-counter monotonicity.
 - Built-in conformance scenario suite (registration, authentication, policy and
   security categories) with positive and negative expectations.
+- Conformance report engine emitting JSON (schema `passkeypier/report/v1`) and
+  human-readable text.
+- `passkeypier` CLI with `run`, `demo`, `list` and `version` subcommands.
+- Focused unit tests and runnable Go examples.
