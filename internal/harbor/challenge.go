@@ -17,3 +17,5 @@ const (
 type Challenge []byte
 
 // NewChallenge returns a cryptographically secure random challenge of the
+// requested length. Lengths below the 16-byte spec minimum are rejected.
+func NewChallenge(n int) (Challenge, error) {
