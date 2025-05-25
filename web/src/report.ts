@@ -74,3 +74,10 @@ export function parseReport(raw: unknown): Report {
   }
   const categoriesRaw = raw["categories"];
   if (!Array.isArray(categoriesRaw)) {
+    throw new ReportError('field "categories" must be an array');
+  }
+  const resultsRaw = raw["results"];
+  if (!Array.isArray(resultsRaw)) {
+    throw new ReportError('field "results" must be an array');
+  }
+
