@@ -31,3 +31,5 @@ type ScenarioResult struct {
 	Description string      `json:"description"`
 	Expectation Expectation `json:"expectation"`
 	Outcome     Outcome     `json:"outcome"`
+	// Detail carries the error message on rejection, or a success note.
+	Detail string `json:"detail"`
