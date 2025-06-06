@@ -28,3 +28,6 @@ jobs:
         run: go build ./...
       - name: Test
         run: go test -cover ./...
+      - name: Smoke run
+        run: go run ./cmd/passkeypier run -format json -out report.json && test -s report.json
+
