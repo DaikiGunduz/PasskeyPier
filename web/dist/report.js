@@ -7,3 +7,4 @@ export class ReportError extends Error {
 function isObject(v) {
     return typeof v === "object" && v !== null && !Array.isArray(v);
 }
+function requireString(o, key) {
