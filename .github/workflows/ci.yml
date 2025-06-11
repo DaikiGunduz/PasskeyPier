@@ -31,3 +31,6 @@ jobs:
       - name: Smoke run
         run: go run ./cmd/passkeypier run -format json -out report.json && test -s report.json
 
+  web:
+    name: TypeScript lab
+    runs-on: ubuntu-latest
