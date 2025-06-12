@@ -17,3 +17,6 @@ func mustChallenge(t *testing.T) Challenge {
 	ch, err := NewChallenge(DefaultChallengeLen)
 	if err != nil {
 		t.Fatalf("NewChallenge: %v", err)
+	}
+	return ch
+}
