@@ -12,3 +12,5 @@ WebAuthn [relying party](https://www.w3.org/TR/webauthn-2/#relying-party)
 performs during passkey registration and authentication. It is designed to run
 deterministically in a test harness with no browser, no authenticator hardware,
 and no network.
+
+### In scope
