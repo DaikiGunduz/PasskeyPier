@@ -95,3 +95,23 @@ func cmdDemo(args []string) int {
 	uvFlag := fs.String("uv", "preferred", "user verification: required, preferred or discouraged")
 	_ = fs.Parse(args)
 
+	uv := harbor.UserVerification(*uvFlag)
+	if err := uv.Validate(); err != nil {
+		fmt.Fprintf(os.Stderr, "passkeypier: %v\n", err)
+		return 2
+	}
+
+	const (
+		rpID   = "harbor.example"
+		origin = "https://harbor.example"
+	)
+	rp := harbor.NewRelyingParty(rpID, origin)
+	va := harbor.NewVirtualAuthenticator(true)
+
+	regCh, err := harbor.NewChallenge(harbor.DefaultChallengeLen)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "passkeypier: %v\n", err)
+		return 1
+	}
+	reg, err := harbor.Register(rp, va, harbor.RegistrationOptions{
+		Challenge:        regCh,
