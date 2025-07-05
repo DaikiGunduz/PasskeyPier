@@ -58,3 +58,9 @@ func Example_registerAndAuthenticate() {
 // ExampleConformanceSuite runs the built-in scenario suite and prints the
 // summary counts, showing how a report is produced programmatically.
 func Example_conformanceSuite() {
+	results := harbor.RunScenarios(harbor.DefaultScenarios())
+	report := harbor.BuildReport(results)
+	fmt.Printf("all passed: %v (%d scenarios)\n", report.Summary.AllPassed, report.Summary.Total)
+	// Output:
+	// all passed: true (9 scenarios)
+}
