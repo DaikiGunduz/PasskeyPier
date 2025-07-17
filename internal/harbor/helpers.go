@@ -48,3 +48,11 @@ func tamperedSignatureCheck(rp *RelyingParty, reg *RegistrationResult) error {
 	}
 	ad, err := ParseAuthenticatorData(reg.AuthenticatorData)
 	if err != nil {
+		return err
+	}
+	// Rebuild minimal auth data (no attested credential data) for the assertion.
+	assertAD := AuthenticatorData{RPIDHash: ad.RPIDHash, Flags: FlagUserPresent | FlagUserVerified, SignCount: 1}.Marshal()
+
+	// We do not have the private key here, so simulate a forged signature by
+	// signing with a throwaway key: verification against the real public key
+	// must fail. This models an attacker who cannot access the credential key.
