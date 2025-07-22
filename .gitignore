@@ -8,3 +8,4 @@ coverage.*
 # Generated reports (regenerate with `make report`)
 /report.json
 
+# TypeScript build output and deps
