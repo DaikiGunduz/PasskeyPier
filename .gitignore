@@ -9,3 +9,5 @@ coverage.*
 /report.json
 
 # TypeScript build output and deps
+web/dist/
+web/node_modules/
