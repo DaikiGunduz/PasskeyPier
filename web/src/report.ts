@@ -3,3 +3,4 @@
 // before the UI renders it.
 
 import { Report, ScenarioResult, EXPECTED_SCHEMA } from "./types.js";
+
