@@ -24,3 +24,6 @@ func NewChallenge(n int) (Challenge, error) {
 	}
 	buf := make([]byte, n)
 	if _, err := rand.Read(buf); err != nil {
+		return nil, fmt.Errorf("harbor: reading random challenge: %w", err)
+	}
+	return Challenge(buf), nil
