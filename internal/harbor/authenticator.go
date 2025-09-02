@@ -74,3 +74,12 @@ func (va *VirtualAuthenticator) lookup(credIDB64 string) (*credential, bool) {
 	c, ok := va.creds[credIDB64]
 	return c, ok
 }
+
+// buildAuthData assembles authenticator data with the appropriate flags.
+// includeAttested controls whether the AT flag and attested credential data
+// (used at registration) are present. uv reflects whether user verification
+// was performed for this ceremony.
+func (c *credential) buildAuthData(uv, includeAttested bool, aaguid [16]byte) AuthenticatorData {
+	flags := FlagUserPresent
+	if uv {
+		flags |= FlagUserVerified
