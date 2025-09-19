@@ -65,3 +65,10 @@ export function renderReport(target, report) {
     target.appendChild(renderCategories(report));
     const results = el("div", "results");
     results.appendChild(el("h2", undefined, "Scenarios"));
+    for (const r of report.results) {
+        results.appendChild(renderScenario(r));
+    }
+    target.appendChild(results);
+}
+// renderError displays a validation or load error in the target.
+export function renderError(target, message) {
