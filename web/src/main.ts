@@ -5,3 +5,4 @@
 import { parseReportText, ReportError } from "./report.js";
 import { renderReport, renderError } from "./render.js";
 
+function getTarget(): HTMLElement {
