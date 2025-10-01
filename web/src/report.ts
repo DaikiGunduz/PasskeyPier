@@ -4,3 +4,5 @@
 
 import { Report, ScenarioResult, EXPECTED_SCHEMA } from "./types.js";
 
+export class ReportError extends Error {}
+
