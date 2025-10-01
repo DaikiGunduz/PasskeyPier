@@ -51,3 +51,10 @@ function wireDrop() {
         if (file)
             file.text().then(handleText);
     });
+}
+function wireSample() {
+    const btn = document.getElementById("load-sample");
+    if (!btn)
+        return;
+    const script = document.getElementById("sample-report");
+    btn.addEventListener("click", () => {
