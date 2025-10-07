@@ -14,3 +14,5 @@ deterministically in a test harness with no browser, no authenticator hardware,
 and no network.
 
 ### In scope
+
+- Secure random challenge generation and lifecycle.
