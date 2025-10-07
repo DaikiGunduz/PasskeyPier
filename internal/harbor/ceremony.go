@@ -142,3 +142,24 @@ func Authenticate(rp *RelyingParty, va *VirtualAuthenticator, opts Authenticatio
 	if err != nil {
 		return nil, err
 	}
+
+	ad := cred.buildAuthData(uv, false, va.AAGUID)
+	adBytes := ad.Marshal()
+
+	// The authenticator signs the concatenation authData || SHA-256(clientData).
+	signed := append(append([]byte(nil), adBytes...), cdHash...)
+	sig := ed25519.Sign(cred.priv, signed)
+
+	res := &AuthenticationResult{
+		CredentialID:      append([]byte(nil), cred.id...),
+		ClientDataJSON:    cdJSON,
+		AuthenticatorData: adBytes,
+		Signature:         sig,
+		UserVerified:      uv,
+	}
+
+	// RP-side verification.
+	stored, ok := rp.Store[EncodeBase64URL(cred.id)]
+	if !ok {
+		return nil, errors.New("harbor: asserted credential is not registered")
+	}
