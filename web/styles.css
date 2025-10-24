@@ -24,3 +24,6 @@ body {
 }
 
 .topbar {
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
