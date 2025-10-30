@@ -184,3 +184,49 @@ func TestWrongOriginRejected(t *testing.T) {
 	if !strings.Contains(err.Error(), "origin") {
 		t.Fatalf("expected origin error, got: %v", err)
 	}
+}
+
+func TestCounterRegressionRejected(t *testing.T) {
+	if err := verifyCounter(10, 5); err == nil {
+		t.Fatal("expected counter regression rejection")
+	}
+	if err := verifyCounter(0, 0); err != nil {
+		t.Fatalf("counter 0->0 should be tolerated: %v", err)
+	}
+	if err := verifyCounter(1, 2); err != nil {
+		t.Fatalf("counter 1->2 should pass: %v", err)
+	}
+}
+
+func TestSignatureVerificationFailsOnTamper(t *testing.T) {
+	rp := NewRelyingParty(testRPID, testOrigin)
+	va := NewVirtualAuthenticator(true)
+	if _, err := Register(rp, va, RegistrationOptions{
+		Challenge:        mustChallenge(t),
+		UserVerification: UVPreferred,
+	}, Origin(testOrigin)); err != nil {
+		t.Fatalf("Register: %v", err)
+	}
+	auth, err := Authenticate(rp, va, AuthenticationOptions{
+		Challenge:        mustChallenge(t),
+		UserVerification: UVPreferred,
+	}, Origin(testOrigin))
+	if err != nil {
+		t.Fatalf("Authenticate: %v", err)
+	}
+	stored := rp.Store[EncodeBase64URL(auth.CredentialID)]
+	cdHash := sha256Of(t, auth.ClientDataJSON)
+	// Flip a signature byte.
+	tampered := append([]byte(nil), auth.Signature...)
+	tampered[0] ^= 0xff
+	if err := VerifyAssertionSignature(stored.PublicKey, auth.AuthenticatorData, cdHash, tampered); err == nil {
+		t.Fatal("expected tampered signature to fail verification")
+	}
+	// The untampered signature must verify.
+	if err := VerifyAssertionSignature(stored.PublicKey, auth.AuthenticatorData, cdHash, auth.Signature); err != nil {
+		t.Fatalf("valid signature failed verification: %v", err)
+	}
+}
+
+func TestUserVerificationValidate(t *testing.T) {
+	for _, uv := range []UserVerification{UVRequired, UVPreferred, UVDiscouraged} {
