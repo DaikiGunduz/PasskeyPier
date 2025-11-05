@@ -30,3 +30,7 @@ func EncodeBase64URL(raw []byte) string {
 func DecodeBase64URL(s string) ([]byte, error) {
 	if raw, err := b64url.DecodeString(s); err == nil {
 		return raw, nil
+	}
+	// Fall back to the padded variant for lenient fixture parsing.
+	return base64.URLEncoding.DecodeString(s)
+}
