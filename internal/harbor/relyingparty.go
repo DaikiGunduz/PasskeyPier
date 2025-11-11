@@ -55,3 +55,8 @@ func NewRelyingParty(id, origin string) *RelyingParty {
 type RegistrationOptions struct {
 	Challenge        Challenge
 	UserHandle       []byte
+	UserVerification UserVerification
+}
+
+// AuthenticationOptions are the parameters the RP issues to begin a get
+// ceremony (analogous to PublicKeyCredentialRequestOptions).
