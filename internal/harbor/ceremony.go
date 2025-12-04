@@ -163,3 +163,23 @@ func Authenticate(rp *RelyingParty, va *VirtualAuthenticator, opts Authenticatio
 	if !ok {
 		return nil, errors.New("harbor: asserted credential is not registered")
 	}
+	res.UserHandle = append([]byte(nil), stored.UserHandle...)
+
+	if err := verifyClientData(cdJSON, TypeGet, opts.Challenge, rp.Origin); err != nil {
+		return nil, err
+	}
+	if err := verifyRPIDHash(ad, rp.ID); err != nil {
+		return nil, err
+	}
+	if err := verifyUVFlag(ad, opts.UserVerification); err != nil {
+		return nil, err
+	}
+	if !ad.Has(FlagUserPresent) {
+		return nil, errors.New("harbor: user presence flag not set")
+	}
+	if err := VerifyAssertionSignature(stored.PublicKey, adBytes, cdHash, sig); err != nil {
+		return nil, err
+	}
+	if err := verifyCounter(stored.SignCount, ad.SignCount); err != nil {
+		return nil, err
+	}
