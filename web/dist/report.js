@@ -8,3 +8,4 @@ function isObject(v) {
     return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 function requireString(o, key) {
+    const v = o[key];
