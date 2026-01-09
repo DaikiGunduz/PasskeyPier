@@ -64,3 +64,17 @@ export function parseReport(raw) {
         throw new ReportError('field "summary" must be an object');
     }
     const categoriesRaw = raw["categories"];
+    if (!Array.isArray(categoriesRaw)) {
+        throw new ReportError('field "categories" must be an array');
+    }
+    const resultsRaw = raw["results"];
+    if (!Array.isArray(resultsRaw)) {
+        throw new ReportError('field "results" must be an array');
+    }
+    return {
+        schema,
+        tool: requireString(raw, "tool"),
+        generated_at: requireString(raw, "generated_at"),
+        summary: {
+            total: requireNumber(summaryRaw, "total"),
+            passed: requireNumber(summaryRaw, "passed"),
