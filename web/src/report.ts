@@ -81,3 +81,9 @@ export function parseReport(raw: unknown): Report {
     throw new ReportError('field "results" must be an array');
   }
 
+  return {
+    schema,
+    tool: requireString(raw, "tool"),
+    generated_at: requireString(raw, "generated_at"),
+    summary: {
+      total: requireNumber(summaryRaw, "total"),
