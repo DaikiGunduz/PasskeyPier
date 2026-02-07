@@ -78,3 +78,16 @@ export function parseReport(raw) {
         summary: {
             total: requireNumber(summaryRaw, "total"),
             passed: requireNumber(summaryRaw, "passed"),
+            failed: requireNumber(summaryRaw, "failed"),
+            all_passed: requireBool(summaryRaw, "all_passed"),
+        },
+        categories: categoriesRaw.map((c) => {
+            if (!isObject(c))
+                throw new ReportError("category must be an object");
+            return {
+                category: requireString(c, "category"),
+                passed: requireNumber(c, "passed"),
+                failed: requireNumber(c, "failed"),
+            };
+        }),
+        results: resultsRaw.map(parseScenario),
