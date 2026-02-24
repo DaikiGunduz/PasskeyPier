@@ -107,3 +107,13 @@ func (r Report) WriteText(w io.Writer) error {
 	}
 
 	fmt.Fprintf(&b, "\nsummary: %d passed, %d failed of %d total\n",
+		r.Summary.Passed, r.Summary.Failed, r.Summary.Total)
+	if r.Summary.AllPassed {
+		b.WriteString("result: ALL SCENARIOS PASSED\n")
+	} else {
+		b.WriteString("result: CONFORMANCE FAILURES PRESENT\n")
+	}
+
+	_, err := io.WriteString(w, b.String())
+	return err
+}
