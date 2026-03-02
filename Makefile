@@ -4,3 +4,4 @@
 # a local TypeScript compiler (npm i inside web/, or a global `tsc`).
 
 GO      ?= go
+PKG     := ./...
