@@ -14,3 +14,6 @@
     "noFallthroughCasesInSwitch": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "skipLibCheck": true
