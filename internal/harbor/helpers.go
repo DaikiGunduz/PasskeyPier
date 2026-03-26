@@ -56,3 +56,11 @@ func tamperedSignatureCheck(rp *RelyingParty, reg *RegistrationResult) error {
 	// We do not have the private key here, so simulate a forged signature by
 	// signing with a throwaway key: verification against the real public key
 	// must fail. This models an attacker who cannot access the credential key.
+	_, forgePriv, _ := ed25519.GenerateKey(nil)
+	signed := append(append([]byte(nil), assertAD...), cdHash...)
+	forged := ed25519.Sign(forgePriv, signed)
+
+	return VerifyAssertionSignature(stored.PublicKey, assertAD, cdHash, forged)
+}
+
+// rpIDHashMismatchCheck builds authenticator data whose RP ID hash is for
