@@ -204,3 +204,24 @@ func decideUV(va *VirtualAuthenticator, req UserVerification) bool {
 }
 
 // selectCredential picks a resident credential for the RP, honoring an optional
+// allow-list credential id.
+func selectCredential(va *VirtualAuthenticator, rpID string, allow []byte) (*credential, error) {
+	if allow != nil {
+		if c, ok := va.lookup(EncodeBase64URL(allow)); ok {
+			if c.rpID != rpID {
+				return nil, errors.New("harbor: allowed credential bound to different RP")
+			}
+			return c, nil
+		}
+		return nil, errors.New("harbor: no resident credential matches allow list")
+	}
+	for _, c := range va.creds {
+		if c.rpID == rpID {
+			return c, nil
+		}
+	}
+	return nil, fmt.Errorf("harbor: no resident credential for RP %q", rpID)
+}
+
+// VerifyAssertionSignature checks an Ed25519 signature over
+// authData || clientDataHash. Exported for use by fixtures and tests.
