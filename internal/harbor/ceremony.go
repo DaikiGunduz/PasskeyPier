@@ -225,3 +225,23 @@ func selectCredential(va *VirtualAuthenticator, rpID string, allow []byte) (*cre
 
 // VerifyAssertionSignature checks an Ed25519 signature over
 // authData || clientDataHash. Exported for use by fixtures and tests.
+func VerifyAssertionSignature(pub, authData, clientDataHash, sig []byte) error {
+	if len(pub) != ed25519.PublicKeySize {
+		return fmt.Errorf("harbor: public key size %d, want %d", len(pub), ed25519.PublicKeySize)
+	}
+	signed := append(append([]byte(nil), authData...), clientDataHash...)
+	if !ed25519.Verify(ed25519.PublicKey(pub), signed, sig) {
+		return errors.New("harbor: assertion signature verification failed")
+	}
+	return nil
+}
+
+// verifyClientData validates the type, challenge and origin of client data.
+func verifyClientData(cdJSON []byte, want CeremonyType, challenge Challenge, expectOrigin string) error {
+	var cd ClientData
+	if err := decodeStrict(cdJSON, &cd); err != nil {
+		return fmt.Errorf("harbor: decoding client data: %w", err)
+	}
+	if cd.Type != want {
+		return fmt.Errorf("harbor: client data type %q, want %q", cd.Type, want)
+	}
