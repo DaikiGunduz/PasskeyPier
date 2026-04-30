@@ -78,3 +78,14 @@ func (ad AuthenticatorData) Marshal() []byte {
 func ParseAuthenticatorData(raw []byte) (AuthenticatorData, error) {
 	if len(raw) < 37 {
 		return AuthenticatorData{}, fmt.Errorf("harbor: authenticator data too short: %d bytes", len(raw))
+	}
+	var ad AuthenticatorData
+	copy(ad.RPIDHash[:], raw[0:32])
+	ad.Flags = raw[32]
+	ad.SignCount = binary.BigEndian.Uint32(raw[33:37])
+	if len(raw) > 37 {
+		ad.Trailing = append([]byte(nil), raw[37:]...)
+	}
+	return ad, nil
+}
+
