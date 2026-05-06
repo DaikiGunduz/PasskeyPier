@@ -56,3 +56,8 @@ web-build: ## compile the TypeScript lab to web/dist
 clean: ## remove build artifacts
 	-rm -f $(BIN) $(BIN).exe $(REPORT)
 	-rm -rf web/dist
+
+.PHONY: help
+help: ## list targets
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  %-16s %s\n", $$1, $$2}'
