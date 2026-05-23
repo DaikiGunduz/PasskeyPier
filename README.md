@@ -35,3 +35,7 @@ transport bindings. The exact scope and the honest list of non-goals live in
 - [The browser lab](#the-browser-lab)
 - [Layout of the harbor](#layout-of-the-harbor)
 - [Building, testing, and CI](#building-testing-and-ci)
+- [Design notes and honest limits](#design-notes-and-honest-limits)
+- [License](#license)
+
+---
