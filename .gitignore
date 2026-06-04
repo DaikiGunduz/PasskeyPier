@@ -11,3 +11,5 @@ coverage.*
 # TypeScript build output and deps
 web/dist/
 web/node_modules/
+*.tsbuildinfo
+
