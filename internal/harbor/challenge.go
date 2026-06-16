@@ -27,3 +27,5 @@ func NewChallenge(n int) (Challenge, error) {
 		return nil, fmt.Errorf("harbor: reading random challenge: %w", err)
 	}
 	return Challenge(buf), nil
+}
+
