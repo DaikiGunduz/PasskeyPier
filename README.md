@@ -39,3 +39,7 @@ transport bindings. The exact scope and the honest list of non-goals live in
 - [License](#license)
 
 ---
+
+## Why a pier
+
+A passkey ceremony is a small piece of maritime choreography. The relying party
