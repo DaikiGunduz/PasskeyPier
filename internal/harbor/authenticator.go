@@ -83,3 +83,13 @@ func (c *credential) buildAuthData(uv, includeAttested bool, aaguid [16]byte) Au
 	flags := FlagUserPresent
 	if uv {
 		flags |= FlagUserVerified
+	}
+	if c.backedUp {
+		flags |= FlagBackupEligible | FlagBackupState
+	}
+	ad := AuthenticatorData{
+		RPIDHash:  RPIDHash(c.rpID),
+		Flags:     flags,
+		SignCount: c.signCount,
+	}
+	if includeAttested {
