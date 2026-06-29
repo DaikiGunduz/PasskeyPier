@@ -28,3 +28,6 @@ export interface CategoryTotals {
   failed: number;
 }
 
+export interface Report {
+  schema: string;
+  tool: string;
