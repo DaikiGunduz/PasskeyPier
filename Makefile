@@ -5,3 +5,4 @@
 
 GO      ?= go
 PKG     := ./...
+BIN     := passkeypier
