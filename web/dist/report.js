@@ -91,3 +91,17 @@ export function parseReport(raw) {
             };
         }),
         results: resultsRaw.map(parseScenario),
+    };
+}
+// parseReportText parses a JSON string into a validated Report.
+export function parseReportText(text) {
+    let raw;
+    try {
+        raw = JSON.parse(text);
+    }
+    catch (e) {
+        throw new ReportError(`invalid JSON: ${e.message}`);
+    }
+    return parseReport(raw);
+}
+//# sourceMappingURL=report.js.map
