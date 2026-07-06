@@ -29,3 +29,6 @@ func NewChallenge(n int) (Challenge, error) {
 	return Challenge(buf), nil
 }
 
+// String renders the challenge as base64url, matching how it appears on the
+// wire inside client data JSON.
+func (c Challenge) String() string { return EncodeBase64URL(c) }
