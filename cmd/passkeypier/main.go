@@ -13,3 +13,5 @@ import (
 
 	"github.com/passkeypier/passkeypier/internal/harbor"
 )
+
+const usage = `passkeypier - virtual Passkey/WebAuthn conformance lab
