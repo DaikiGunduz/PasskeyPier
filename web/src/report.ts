@@ -100,3 +100,9 @@ export function parseReport(raw: unknown): Report {
       };
     }),
     results: resultsRaw.map(parseScenario),
+  };
+}
+
+// parseReportText parses a JSON string into a validated Report.
+export function parseReportText(text: string): Report {
+  let raw: unknown;
