@@ -156,3 +156,15 @@ Let `stored` be the last accepted counter and `got` the incoming value.
       "expectation": "reject",
       "outcome": "pass",
       "detail": "rejected as expected: harbor: origin …",
+      "duration_ns": 123456
+    }
+  ]
+}
+```
+
+A scenario's `outcome` is `pass` when the actual result matches its
+`expectation`. A negative scenario (`expectation = reject`) that is instead
+accepted is a conformance failure. The TypeScript lab validates this shape
+before rendering.
+
+## 8. Threat scenarios exercised
