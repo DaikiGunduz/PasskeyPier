@@ -31,3 +31,6 @@ export interface CategoryTotals {
 export interface Report {
   schema: string;
   tool: string;
+  generated_at: string;
+  summary: ReportSummary;
+  categories: CategoryTotals[];
