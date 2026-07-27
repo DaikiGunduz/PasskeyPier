@@ -245,3 +245,24 @@ func verifyClientData(cdJSON []byte, want CeremonyType, challenge Challenge, exp
 	if cd.Type != want {
 		return fmt.Errorf("harbor: client data type %q, want %q", cd.Type, want)
 	}
+	got, err := DecodeBase64URL(cd.Challenge)
+	if err != nil {
+		return fmt.Errorf("harbor: decoding client data challenge: %w", err)
+	}
+	if !bytes.Equal(got, challenge) {
+		return errors.New("harbor: challenge mismatch (possible replay or wrong ceremony)")
+	}
+	if cd.Origin != expectOrigin {
+		return fmt.Errorf("harbor: origin %q, want %q", cd.Origin, expectOrigin)
+	}
+	return nil
+}
+
+// verifyRPIDHash checks the RP ID hash prefix of authenticator data.
+func verifyRPIDHash(ad AuthenticatorData, rpID string) error {
+	want := RPIDHash(rpID)
+	if !bytes.Equal(ad.RPIDHash[:], want[:]) {
+		return errors.New("harbor: RP ID hash mismatch")
+	}
+	return nil
+}
