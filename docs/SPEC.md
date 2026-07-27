@@ -16,3 +16,5 @@ and no network.
 ### In scope
 
 - Secure random challenge generation and lifecycle.
+- `base64url` (unpadded) encoding of binary values.
+- Client data (`webauthn.create` / `webauthn.get`) construction and SHA-256
