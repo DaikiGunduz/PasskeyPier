@@ -18,3 +18,5 @@ and no network.
 - Secure random challenge generation and lifecycle.
 - `base64url` (unpadded) encoding of binary values.
 - Client data (`webauthn.create` / `webauthn.get`) construction and SHA-256
+  hashing.
+- Authenticator data layout, flag bits, and the big-endian signature counter.
