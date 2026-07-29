@@ -209,3 +209,24 @@ func DefaultScenarios() []Scenario {
 			Expectation: ExpectReject,
 			Run: func() error {
 				rp, va := newPair(true)
+				reg, err := registerHelper(rp, va, UVPreferred)
+				if err != nil {
+					return err
+				}
+				// Force the stored counter high so the next assertion regresses.
+				rp.Store[EncodeBase64URL(reg.CredentialID)].SignCount = 99
+				ch, err := NewChallenge(DefaultChallengeLen)
+				if err != nil {
+					return err
+				}
+				_, err = Authenticate(rp, va, AuthenticationOptions{
+					Challenge:        ch,
+					UserVerification: UVPreferred,
+				}, Origin(origin))
+				return err
+			},
+		},
+		{
+			Name:        "authenticate/tampered-signature",
+			Category:    "security",
+			Description: "Flipping a byte of the assertion signature must fail Ed25519 verification.",
