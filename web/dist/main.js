@@ -58,3 +58,9 @@ function wireSample() {
         return;
     const script = document.getElementById("sample-report");
     btn.addEventListener("click", () => {
+        if (script && script.textContent) {
+            handleText(script.textContent);
+        }
+        else {
+            renderError(getTarget(), "no bundled sample report is embedded on this page");
+        }
