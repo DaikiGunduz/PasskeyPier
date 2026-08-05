@@ -230,3 +230,24 @@ func DefaultScenarios() []Scenario {
 			Name:        "authenticate/tampered-signature",
 			Category:    "security",
 			Description: "Flipping a byte of the assertion signature must fail Ed25519 verification.",
+			Expectation: ExpectReject,
+			Run: func() error {
+				rp, va := newPair(true)
+				reg, err := registerHelper(rp, va, UVPreferred)
+				if err != nil {
+					return err
+				}
+				return tamperedSignatureCheck(rp, reg)
+			},
+		},
+		{
+			Name:        "authenticate/wrong-rp-binding",
+			Category:    "security",
+			Description: "Authenticator data carrying a foreign RP ID hash must fail the RP ID hash check.",
+			Expectation: ExpectReject,
+			Run: func() error {
+				return rpIDHashMismatchCheck(otherRP, rpID)
+			},
+		},
+	}
+}
