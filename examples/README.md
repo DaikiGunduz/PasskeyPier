@@ -16,3 +16,4 @@ The TypeScript browser lab (`web/`) loads this file to render the report.
 
 An example-style Go test that documents the honest register + authenticate
 ceremony as a self-contained, runnable transcript. Run it with:
+
