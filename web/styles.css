@@ -179,3 +179,33 @@ main {
   font-weight: 700;
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
+}
+
+.badge-pass {
+  background: rgba(61, 220, 151, 0.2);
+  color: var(--pass);
+}
+
+.badge-fail {
+  background: rgba(255, 107, 107, 0.2);
+  color: var(--fail);
+}
+
+.sc-name {
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+.sc-cat,
+.sc-exp,
+.sc-dur {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: var(--mono);
+}
+
+.sc-dur {
+  margin-left: auto;
+}
+
+.sc-body {
