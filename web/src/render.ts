@@ -75,3 +75,14 @@ function renderScenario(r: ScenarioResult): HTMLElement {
   summary.appendChild(el("span", "sc-cat", r.category));
   summary.appendChild(
     el("span", "sc-exp", `expect ${r.expectation}`),
+  );
+  summary.appendChild(el("span", "sc-dur", formatDuration(r.duration_ns)));
+  row.appendChild(summary);
+
+  const body = el("div", "sc-body");
+  body.appendChild(el("p", "sc-desc", r.description));
+  body.appendChild(el("p", "sc-detail", r.detail));
+  row.appendChild(body);
+  return row;
+}
+
