@@ -33,3 +33,6 @@ type ScenarioResult struct {
 	Outcome     Outcome     `json:"outcome"`
 	// Detail carries the error message on rejection, or a success note.
 	Detail string `json:"detail"`
+	// DurationNS is the wall-clock duration of the scenario in nanoseconds.
+	DurationNS int64 `json:"duration_ns"`
+}
