@@ -106,3 +106,10 @@ export function parseReport(raw: unknown): Report {
 // parseReportText parses a JSON string into a validated Report.
 export function parseReportText(text: string): Report {
   let raw: unknown;
+  try {
+    raw = JSON.parse(text);
+  } catch (e) {
+    throw new ReportError(`invalid JSON: ${(e as Error).message}`);
+  }
+  return parseReport(raw);
+}
