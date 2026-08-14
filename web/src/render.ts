@@ -86,3 +86,14 @@ function renderScenario(r: ScenarioResult): HTMLElement {
   return row;
 }
 
+// renderReport clears the target and renders the full report into it.
+export function renderReport(target: HTMLElement, report: Report): void {
+  target.textContent = "";
+  target.appendChild(renderSummary(report));
+  target.appendChild(renderCategories(report));
+
+  const results = el("div", "results");
+  results.appendChild(el("h2", undefined, "Scenarios"));
+  for (const r of report.results) {
+    results.appendChild(renderScenario(r));
+  }
