@@ -13,3 +13,4 @@ web/dist/
 web/node_modules/
 *.tsbuildinfo
 
+# Editor / OS noise
