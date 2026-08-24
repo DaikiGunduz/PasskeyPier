@@ -21,3 +21,6 @@ func Origin(origin string) clientOrigin {
 
 // CrossOrigin constructs a client context that reports a possibly different
 // origin with the crossOrigin flag set, for modeling iframe / mismatch cases.
+func CrossOrigin(origin string) clientOrigin {
+	return clientOrigin{origin: origin, crossOrigin: true}
+}
