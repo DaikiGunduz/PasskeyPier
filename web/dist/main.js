@@ -64,3 +64,10 @@ function wireSample() {
         else {
             renderError(getTarget(), "no bundled sample report is embedded on this page");
         }
+    });
+}
+function main() {
+    wireFileInput();
+    wireDrop();
+    wireSample();
+}
