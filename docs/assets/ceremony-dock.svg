@@ -54,3 +54,11 @@
   </defs>
 
   <!-- signed message construction -->
+  <g transform="translate(140 250)">
+    <rect width="420" height="44" rx="6" fill="#10293e" stroke="#2e5a80"/>
+    <text x="210" y="20" text-anchor="middle" fill="#cfe0ee" font-family="monospace" font-size="12">signed message</text>
+    <text x="210" y="36" text-anchor="middle" fill="#e8eff5" font-family="monospace" font-size="12">authenticatorData || SHA-256(clientDataJSON)</text>
+  </g>
+
+  <text x="36" y="40" fill="#e8eff5" font-family="monospace" font-size="15">webauthn.create registers, webauthn.get authenticates</text>
+</svg>
