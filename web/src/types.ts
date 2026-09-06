@@ -34,3 +34,7 @@ export interface Report {
   generated_at: string;
   summary: ReportSummary;
   categories: CategoryTotals[];
+  results: ScenarioResult[];
+}
+
+export const EXPECTED_SCHEMA = "passkeypier/report/v1";
