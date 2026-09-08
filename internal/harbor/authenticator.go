@@ -102,3 +102,13 @@ func (c *credential) buildAuthData(uv, includeAttested bool, aaguid [16]byte) Au
 		trailing = append(trailing, aaguid[:]...)
 		l := len(c.id)
 		trailing = append(trailing, byte(l>>8), byte(l))
+		trailing = append(trailing, c.id...)
+		trailing = append(trailing, c.pub...)
+		ad.Trailing = trailing
+	}
+	return ad
+}
+
+// errUVUnsupported is returned when a ceremony requires UV but the
+// authenticator cannot perform it.
+var errUVUnsupported = errors.New("harbor: authenticator does not support user verification")
