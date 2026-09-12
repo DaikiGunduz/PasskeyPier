@@ -98,3 +98,11 @@
       "name": "register/happy-path-uv-preferred",
       "category": "registration",
       "description": "Honest registration with a UV-capable authenticator and preferred policy.",
+      "expectation": "accept",
+      "outcome": "pass",
+      "detail": "ceremony accepted as expected",
+      "duration_ns": 504200
+    },
+    {
+      "name": "register/uv-required-without-uv-support",
+      "category": "registration",
