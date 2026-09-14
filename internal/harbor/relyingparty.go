@@ -60,3 +60,9 @@ type RegistrationOptions struct {
 
 // AuthenticationOptions are the parameters the RP issues to begin a get
 // ceremony (analogous to PublicKeyCredentialRequestOptions).
+type AuthenticationOptions struct {
+	Challenge        Challenge
+	UserVerification UserVerification
+	// AllowCredentialID optionally restricts which credential may respond.
+	AllowCredentialID []byte
+}
