@@ -64,3 +64,14 @@ function wireSample(): void {
   });
 }
 
+function main(): void {
+  wireFileInput();
+  wireDrop();
+  wireSample();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", main);
+} else {
+  main();
+}
