@@ -71,3 +71,10 @@ function main() {
     wireDrop();
     wireSample();
 }
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", main);
+}
+else {
+    main();
+}
+//# sourceMappingURL=main.js.map
