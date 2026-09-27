@@ -72,3 +72,10 @@ export function renderReport(target, report) {
 }
 // renderError displays a validation or load error in the target.
 export function renderError(target, message) {
+    target.textContent = "";
+    const box = el("div", "error-box");
+    box.appendChild(el("strong", undefined, "Could not render report"));
+    box.appendChild(el("p", undefined, message));
+    target.appendChild(box);
+}
+//# sourceMappingURL=render.js.map
