@@ -266,3 +266,24 @@ func verifyRPIDHash(ad AuthenticatorData, rpID string) error {
 	}
 	return nil
 }
+
+// verifyUVFlag enforces the user-verification policy against the UV flag.
+func verifyUVFlag(ad AuthenticatorData, req UserVerification) error {
+	if req == UVRequired && !ad.Has(FlagUserVerified) {
+		return errors.New("harbor: user verification required but UV flag not set")
+	}
+	return nil
+}
+
+// verifyCounter enforces signature-counter monotonicity. A stored counter of 0
+// with a new value of 0 is tolerated (authenticator does not implement a
+// counter); otherwise the new value must strictly exceed the stored one.
+func verifyCounter(stored, got uint32) error {
+	if stored == 0 && got == 0 {
+		return nil
+	}
+	if got <= stored {
+		return fmt.Errorf("harbor: signature counter did not increase (stored=%d, got=%d): possible cloned authenticator", stored, got)
+	}
+	return nil
+}
