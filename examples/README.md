@@ -18,3 +18,5 @@ An example-style Go test that documents the honest register + authenticate
 ceremony as a self-contained, runnable transcript. Run it with:
 
 ```sh
+go test ./examples/ -run Example -v
+```
