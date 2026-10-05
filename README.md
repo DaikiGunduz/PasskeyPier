@@ -378,3 +378,38 @@ The Go core uses only the standard library, so `go.mod` declares no external
 requirements. CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs
 two jobs:
 
+- **Go**: verifies `go.mod` is tidy, then runs `vet`, `build`, `test -cover`,
+  and a JSON-report smoke run.
+- **TypeScript**: installs the pinned compiler, then runs `tsc --noEmit` and
+  `tsc`.
+
+---
+
+## Design notes and honest limits
+
+passkeypier is intentionally narrow so that what it does implement stays
+faithful:
+
+- **No attestation trust.** Registration attestation is treated as
+  `none`-equivalent. No `packed`, `tpm`, `apple`, or `fido-u2f` statements are
+  parsed or trusted. A passing report is not attestation validation.
+- **No CBOR or COSE_Key.** The credential public key is modeled as a raw 32-byte
+  Ed25519 key rather than a COSE_Key CBOR map. Signatures verify against the
+  stored key object.
+- **Ed25519 only.** ES256 (`-7`) and RS256 (`-257`) are out of scope.
+- **RP ID matching is exact.** There is no registrable-domain-suffix walking.
+- **No transport or CTAP framing, extensions, or enterprise features.**
+
+These boundaries are documented precisely in [`docs/SPEC.md`](docs/SPEC.md). The
+counter policy, UV policy table, and signed-message construction there match the
+code exactly. If you need certified behavior, use a certified stack; passkeypier
+exists to make the ceremony legible.
+
+The tool follows the relevant public specifications for structure: W3C Web
+Authentication Level 2, RFC 8032 (EdDSA), and RFC 9053 (COSE EdDSA `-8`).
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE). Copyright 2026 passkeypier contributors.
