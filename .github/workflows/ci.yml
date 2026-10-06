@@ -41,3 +41,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
+          node-version: "20"
+      - name: Install pinned TypeScript
+        run: npm install --no-audit --no-fund
